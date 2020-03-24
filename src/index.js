@@ -18,13 +18,15 @@ function Square(props) {
       this.state = {
         squares: Array(9).fill(null),
         xIsNext: true,
+        timer: false,
+        time: 5
       };
       
     }
 
     handleClick(i){
       const squares = this.state.squares.slice();
-      if(calculateWinner(squares) || squares[i]) {
+      if (calculateWinner(squares) || squares[i]) {
         return;
       }
       squares[i] = this.state.xIsNext ? 'X' : 'О';
@@ -35,10 +37,14 @@ function Square(props) {
     });
     }
 
-    push = () =>{
+    handleReset = () =>{
       this.setState(state =>({
         squares: Array(9).fill(null),
-        xIsNext: true
+        xIsNext: true,
+        timer: null,
+    
+      
+  
       }));
 
     }
@@ -47,17 +53,37 @@ function Square(props) {
       return (
         <Square 
           value={this.state.squares[i]} 
-          onClick={() => this.handleClick(i)}
+          onClick={() => this.handleClick(i)} // не делать
           />
         );
 
     }
-  
+    
+    startTimer() {
+          
+          let timer = setInterval(()=>{
+            var timeLeft = this.state.time-1
+      
+            if (timeLeft === 0){
+              clearInterval(timer)
+            }
+            this.setState({
+              time: timeLeft
+            })
+          },1000)
+          return this.setState({time: time})
+        }
+
+
     render() {
       const winner = calculateWinner(this.state.squares);
+      const {timer} = this.state
       let status;
       if (winner){
-        status = 'Выиграл ' + winner;
+        this.startTimer()
+        status = 'Выиграл ' + winner
+
+        if (!timer) { this.setState({ timer: true })}
       } else {
       status = 'Следующий ход: ' + (this.state.xIsNext ? 'X' : 'O');
       }
@@ -80,7 +106,8 @@ function Square(props) {
             {this.renderSquare(8)}
           </div>
           <div>
-          <button onClick = {this.push}>clickme</button>
+          
+          
           </div>
         </div>
       );
@@ -94,6 +121,9 @@ function Square(props) {
           <div className="game-board">
             <Board />
           </div>
+          <div>
+          <TimerDisplay />
+          </div>
           <div className="game-info">
             <div>{/* status */}</div>
             <ol>{/* TODO */}</ol>
@@ -102,6 +132,15 @@ function Square(props) {
       );
     }
   }
+ class TimerDisplay extends React.Component {
+   render() {
+      if(this.state.time === 0 || this.state.time === null){
+          return <div></div>
+      }
+          return <h1>Game started: {this.state.time}</h1>
+      
+   }
+ }
 
   
   
