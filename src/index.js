@@ -2,6 +2,66 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+
+
+
+class TimerWrapper extends React.Component {
+    constructor(props) {
+      super(props)
+      this.startTimer = this.startTimer.bind(this)
+      this.state = {
+        timeLeft: null,
+        timer: null
+      }
+    }
+    startTimer(timeLeft) {
+      clearInterval(this.state.timer)
+      let timer = setInterval(()=>{
+        var timeLeft = this.state.timeLeft -1
+        if (timeLeft === 0){
+          clearInterval(timer)
+        }
+        this.setState({
+          timeLeft: timeLeft
+        })
+      },1000)
+      return this.setState({timeLeft: timeLeft, timer: timer})
+    }
+    
+    render () {
+      return (
+        <div>
+        <h1>Timer</h1>
+          <div>
+            <Button time = '5' startTimer = {this.startTimer}/>
+          </div>
+          <TimerDisplay timeLeft = {this.state.timeLeft} />
+        </div>
+      )
+    }
+  
+  }
+  
+  class Button extends React.Component {
+    handleClick(){
+      return this.props.startTimer(this.props.time)
+    }
+    render(){
+      return <button onClick={this.handleClick.bind(this)}>{this.props.time} second</button>
+    }
+  }
+  
+   class TimerDisplay extends React.Component {
+      render() {
+    
+        if(this.props.timeLeft === 0 || this.props.timeLeft === null){
+          return <div></div>     
+         }
+        return <h1> Timer now: {this.props.timeLeft}</h1>
+      }
+    }
+  
+
 // function Square(props) {
 //       return (
 //         <button className="square" onClick={props.onClick}>
@@ -12,30 +72,30 @@ import './index.css';
     
   
   
-  class Board extends React.Component {
-    constructor(props){
-      super(props);
-      this.state = {
-        squares: Array(9).fill(null),
-        xIsNext: true,
-        timer: null,
-        timeLeft: 5
-      };
+  // class Board extends React.Component {
+  //   constructor(props){
+  //     super(props);
+  //     this.state = {
+  //       squares: Array(9).fill(null),
+  //       xIsNext: true,
+  //       timer: null,
+  //       timeLeft: 5
+  //     };
       
-    }
+  //   }
 
-    startTimer() {
-      let timer = setInterval(()=>{
-                var timeLeft = this.state.timeLeft-1
-                if (timeLeft === 0){
-                  clearInterval(timer)
-                }
-                this.setState({
-                  timeLeft: timeLeft
-                })
-              },1000)
-              return this.setState({timeLeft: timeLeft ,time: timer})
-            }
+    // startTimer() {
+    //   let timer = setInterval(()=>{
+    //             var timeLeft = this.state.timeLeft-1
+    //             if (timeLeft === 0){
+    //               clearInterval(timer)
+    //             }
+    //             this.setState({
+    //               timeLeft: timeLeft
+    //             })
+    //           },1000)
+    //           return this.setState({timeLeft: timeLeft ,time: timer})
+    //         }
     
 
     // handleClick(i){
@@ -90,7 +150,7 @@ import './index.css';
     //     }
 
 
-    render() {
+   // render() {
       // const winner = calculateWinner(this.state.squares);
       // //const {timer} = this.state
       // let status;
@@ -102,7 +162,7 @@ import './index.css';
       // } else {
       // status = 'Следующий ход: ' + (this.state.xIsNext ? 'X' : 'O');
       // }
-      return (
+     // return (
         // <div>
         //   <div className="status">{status}</div>
         //   <div className="board-row">
@@ -125,32 +185,32 @@ import './index.css';
         //   <h1>Game start: {this.state.timer}</h1>
         //   </div> 
         // </div>
-        <div>
-            <h1>Time to: {this.state.time} </h1>
-           <div> <button onClick = {this.startTimer}>timerGo</button></div>
-        </div>
-      );
-    }
-  }
+  //       <div>
+  //           <h1>Time to: {this.state.time} </h1>
+  //          <div> <button onClick = {this.startTimer}>timerGo</button></div>
+  //       </div>
+  //     );
+  //   }
+  // }
   
-  class Game extends React.Component {
-    render() {
-      return (
-        <div className="game">
-          <div className="game-board">
-            <Board />
-          </div>
-          {/* <div>
-          <TimerDisplay />
-          </div> */}
-          <div className="game-info">
-            <div>{/* status */}</div>
-            <ol>{/* TODO */}</ol>
-          </div>
-        </div>
-      );
-    }
-  }
+  // class Game extends React.Component {
+  //   render() {
+  //     return (
+  //       <div className="game">
+  //         <div className="game-board">
+  //           <Board />
+  //         </div>
+  //         {/* <div>
+  //         <TimerDisplay />
+  //         </div> */}
+  //         <div className="game-info">
+  //           <div>{/* status */}</div>
+  //           <ol>{/* TODO */}</ol>
+  //         </div>
+  //       </div>
+  //     );
+  //   }
+  // }
 //  class TimerDisplay extends React.Component {
 //    render() {
 //       if(this.props.time === 0 || this.props.time === null){
@@ -164,11 +224,16 @@ import './index.css';
   
   
   // ========================================
+ 
   
-  ReactDOM.render(
-    <Game />,
-    document.getElementById('root')
-  );
+    ReactDOM.render(
+        <TimerWrapper />,
+        document.getElementById('root')
+      );
+  // ReactDOM.render(
+  //   <Game />,
+  //   document.getElementById('root')
+  // );
 
   // function calculateWinner(squares) {
   //   const lines = [
