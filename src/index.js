@@ -88,7 +88,7 @@ class Board extends React.Component {
     }
     return (
       <div>
-        <div className="status">{status}</div>
+        <div> {isGameOver && <h2>Game started in: {this.state.timeLeft}</h2>}</div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -104,12 +104,11 @@ class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
+        <div className="status">{status}</div>
         <div>
-          {isGameOver && <button onClick = {this.handleReset}>Reset Game</button>}
+          {isGameOver && <button className = "button" onClick = {this.handleReset}>Reset Game</button>}
         </div>
-        <div>
-          {isGameOver && <h1>Game started in: {this.state.timeLeft}</h1>}
-        </div>
+        
       </div>
     );
   }
