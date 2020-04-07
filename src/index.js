@@ -88,7 +88,8 @@ class Board extends React.Component {
     }
     return (
       <div>
-        <div> {isGameOver && <h2>Game started in: {this.state.timeLeft}</h2>}</div>
+      
+        <div className = "timer"> {isGameOver && <h2>Game started in: {this.state.timeLeft}</h2>}</div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}

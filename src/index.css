@@ -52,10 +52,21 @@ body {
    
   }
   .game-board {
-    position: absolute;
+    /* position: fixed;
     top: 20%;
     left: 50%;
-    margin-right: -50%;
+    margin-right: -50%; */
+    /* margin-right: auto;
+    margin-left: auto;
+    position: center; */
+    
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      width: 200px;
+      height:100px;
+      margin: -50px 0 0 -100px;
+    
   
   }
   .button {
@@ -68,5 +79,7 @@ body {
 button:hover { background: rgb(232,95,76); } 
 button:active { background: rgb(152,15,0); } 
   
-
-  
+   .timer {
+    position: fixed;
+    top: 15%;
+  } 
