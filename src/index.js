@@ -88,6 +88,7 @@ class Board extends React.Component {
     }
     return (
       <div>
+      <div>
       
         <div className = "timer"> {isGameOver && <h2>Game started in: {this.state.timeLeft}</h2>}</div>
         <div className="board-row">
@@ -105,10 +106,13 @@ class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
+          </div>
         <div className="status">{status}</div>
-        <div>
-          {isGameOver && <button className = "button" onClick = {this.handleReset}>Reset Game</button>}
+        <div className = "buttom_content">
+        {isGameOver && <button className = "button" onClick = {this.handleReset}>
+        Reset Game</button>}
         </div>
+        
         
       </div>
     );
@@ -119,10 +123,6 @@ const Game = () => (
   <div className="game">
     <div className="game-board">
       <Board />
-    </div>
-    <div className="game-info">
-      <div>{/* status */}</div>
-      <ol>{/* TODO */}</ol>
     </div>
   </div>
 );

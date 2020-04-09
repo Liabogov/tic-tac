@@ -1,7 +1,13 @@
+html {
+  height: 100%;
+}
 body {
-    font: 20px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
+    height: 100%;
+  
   }
+#root {
+  height: 100%;
+}
   
   ol, ul {
     padding-left: 30px;
@@ -15,23 +21,25 @@ body {
   }
   
   .status {
+    font-size: 22px;
     margin-bottom: 10px;
+    text-align: center;
+    justify-content: center;
   }
   
   .square {
     background: #fff;
     border: 1px solid #999;
     float: left; 
-    font-size: 42px;
+    font-size: 64px;
     font-weight: bold;
     line-height: 34px;
-    height: 60px;
+    height: 100px;
     margin-right: -1px; 
-    
     margin-top: -1px; 
     padding: 0;
     text-align: center;
-    width: 60px;
+    width: 100px;
   }
   
   .square:focus {
@@ -43,43 +51,45 @@ body {
   }
   
   .game {
-    display: flex;
-    flex-direction: row;
+    height: 100%;
+
   }
   
-  .game-info {
-    margin-left: 20px;
-   
-  }
   .game-board {
-    /* position: fixed;
-    top: 20%;
-    left: 50%;
-    margin-right: -50%; */
-    /* margin-right: auto;
-    margin-left: auto;
-    position: center; */
-    
-      position: absolute;
-      top: 30%;
-      left: 50%;
-      width: 200px;
-      height:100px;
-      margin: -50px 0 0 -100px;
-    
-  
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+  
+ .buttom_content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
   .button {
-    color: rgb(36, 34, 34);
+  font-size: 18px;
+  color: rgb(36, 34, 34);
   user-select: none; 
   background: rgb(212,75,56);
   padding: .7em 1.5em;
-  border-radius: 12px;
+  border-radius: 14px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5)
 } 
-button:hover { background: rgb(232,95,76); } 
-button:active { background: rgb(152,15,0); } 
+button:hover { 
+  background: rgb(232,95,76);
+  transition: 0.3s; 
+} 
+button:active { 
+  background: rgb(152,15,0); 
+} 
   
    .timer {
-    position: fixed;
     top: 15%;
+    justify-content: center;
+    align-items: center;
   } 
